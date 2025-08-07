@@ -1,0 +1,84 @@
+import mysql.connector
+conn_obj=mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="R@jdeep123",
+    database="retail_project_final_db_april_2025")
+cur_obj=conn_obj.cursor()
+
+#Define function data_entry_sql
+def data_entry_sql(full_name,location,ph_no):
+    sql = "INSERT INTO cust_details (full_name, location, ph_no) VALUES (%s, %s, %s)"
+    data = (full_name,location,ph_no)
+
+    try:
+        cur_obj.execute(sql, data)
+        print("Customer registration successful")
+        conn_obj.commit()
+    except mysql.connector.Error as e:
+        print("Error retrieving data from MySQL:", e)
+        conn_obj.rollback()
+
+#Define function data_retrieve
+def data_retrieve(ph_no):
+    query = f"select * from cust_details WHERE ph_no={ph_no}"
+
+    try:
+        cur_obj.execute(query)
+        result = cur_obj.fetchone()
+        conn_obj.commit()
+    except mysql.connector.Error as e:
+        print("Error retrieving data from MySQL:", e)
+        conn_obj.rollback()
+    return result
+def data_retrieve_from_p_details(p_id):
+    query = f"select * from p_details WHERE p_id={p_id}"
+    try:
+        cur_obj.execute(query)
+        result = cur_obj.fetchone()
+        conn_obj.commit()
+    except mysql.connector.Error as e:
+        print("Error retrieving data from MySQL:", e)
+        conn_obj.rollback()
+    return result
+def data_entry_analytics_table(c_id,total_bill_amount,c_ph_no):
+    sql = "INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (%s, %s, %s)"
+    data = (c_id,total_bill_amount,c_ph_no)
+
+    try:
+        cur_obj.execute(sql, data)
+        print("Analytics table entry successful...")
+        conn_obj.commit()
+    except mysql.connector.Error as e:
+        print("Error retrieving data from MySQL:", e)
+        conn_obj.rollback()
+def billing_mechanism(ph_no):
+    total_bill_value = 0
+    while True:
+        p_id = input("Please enter product id->")
+        product_details_from_db = data_retrieve_from_p_details(p_id)
+        product_price = product_details_from_db[2]
+        p_quantity = int(input("Please enter the product quantity->"))
+        bill_value = product_price * p_quantity
+        # print(bill_value)
+        total_bill_value = total_bill_value + bill_value
+        res = input("press s to stop the billing, and press any key to continue->").upper()
+        if res == 'S':
+            break
+    print("Total amount payable->", total_bill_value)
+    cust_details_from_db=data_retrieve(ph_no)
+    data_entry_analytics_table(cust_details_from_db[0],total_bill_value,ph_no)
+#main logic starts here
+ph_no=input("Enter ph number of customer->")
+cust_details_from_db=data_retrieve(ph_no)
+if cust_details_from_db:
+    print(cust_details_from_db)
+    print("Billing started...")
+    billing_mechanism(ph_no)
+else:
+    #print("new customer")
+    full_name=input("Enter customer full name->")
+    location=input("Enter customer location->")
+    data_entry_sql(full_name,location,ph_no)
+    billing_mechanism(ph_no)
+conn_obj.close()
