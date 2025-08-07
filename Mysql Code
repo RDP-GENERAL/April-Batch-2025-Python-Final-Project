@@ -1,0 +1,104 @@
+create database retail_project_final_db_april_2025;
+use retail_project_final_db_april_2025;
+
+CREATE TABLE cust_details (
+    c_id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    location VARCHAR(100) NOT NULL,
+    ph_no BIGINT NOT NULL
+) AUTO_INCREMENT = 100;
+
+select * from cust_details;
+
+select * from cust_details where ph_no=7788445511;
+
+INSERT INTO cust_details (full_name, location, ph_no)
+VALUES ('Rajdeep Bhadra', 'Kolkata', 9830012345);
+
+drop table p_details;
+CREATE TABLE p_details (
+    p_id INT AUTO_INCREMENT PRIMARY KEY,
+    p_name varchar(100) not null,
+    p_price DECIMAL(10,2) NOT NULL,
+    stock_on_hand INT NOT NULL
+) AUTO_INCREMENT = 10;
+
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Rice (1 kg)', 55.00, 120);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Wheat Flour (1 kg)', 85.00, 80);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Mustard Oil (1L)', 120.00, 50);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Groundnut Oil (1L)', 140.00, 30);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Sugar (1 kg)', 42.00, 100);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Tur Dal (1 kg)', 90.00, 60);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Moong Dal (1 kg)', 160.00, 45);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Salt (1 kg)', 45.00, 90);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Besan (500g)', 35.00, 70);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Suji (500g)', 25.00, 150);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Poha (1 kg)', 75.00, 40);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Chana Dal (1 kg)', 130.00, 55);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Tea (250g)', 45.00, 200);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Coffee (200g)', 230.00, 25);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Muri (1 kg)', 50.00, 110);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Rava (500g)', 28.00, 130);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Vermicelli (500g)', 60.00, 60);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Jeera (50g)', 18.00, 300);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Haldi Powder (100g)', 24.00, 250);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Red Chili Powder (100g)', 30.00, 200);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Coriander Powder (100g)', 45.00, 180);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Garam Masala (100g)', 95.00, 80);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Chat Masala (100g)', 60.00, 90);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Black Pepper Whole (50g)', 75.00, 70);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Cloves (25g)', 40.00, 60);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Bay Leaf (20g)', 20.00, 100);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Mustard Seeds (100g)', 22.00, 140);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Green Cardamom (25g)', 135.00, 30);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Cumin Powder (100g)', 38.00, 95);
+INSERT INTO p_details (p_name, p_price, stock_on_hand) VALUES ('Fenugreek Seeds (100g)', 26.00, 85);
+
+select * from p_details;
+
+select * from p_details where p_id=13;
+
+CREATE TABLE analytics_table (
+    bill_id INT AUTO_INCREMENT PRIMARY KEY,
+    c_id INT NOT NULL,
+    total_bill_amount DECIMAL(10,2) NOT NULL,
+    timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    c_ph_no BIGINT NOT NULL
+) AUTO_INCREMENT = 1;
+
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no)
+VALUES (101, 1250.75, 9830012345);
+
+select * from cust_details;
+select * from analytics_table;
+
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (100, 2499.50, 9830010000);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (101, 3200.75, 9830010001);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (102, 4150.25, 9830010002);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (103, 1320.00, 9830010003);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (104, 2780.10, 9830010004);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (100, 3650.00, 9830010000);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (101, 2100.25, 9830010001);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (102, 4870.00, 9830010002);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (103, 1650.40, 9830010003);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (104, 3799.90, 9830010004);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (100, 2980.55, 9830010000);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (101, 1190.00, 9830010001);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (102, 1444.75, 9830010002);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (103, 2560.00, 9830010003);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (104, 3410.25, 9830010004);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (100, 4175.00, 9830010000);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (101, 1280.80, 9830010001);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (102, 2330.25, 9830010002);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (103, 4899.95, 9830010003);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (104, 3000.00, 9830010004);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (100, 1750.10, 9830010000);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (101, 3990.99, 9830010001);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (102, 1850.00, 9830010002);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (103, 3150.20, 9830010003);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (104, 1650.00, 9830010004);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (100, 4850.60, 9830010000);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (101, 2530.75, 9830010001);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (102, 3025.50, 9830010002);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (103, 1900.00, 9830010003);
+INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (104, 3500.00, 9830010004);
