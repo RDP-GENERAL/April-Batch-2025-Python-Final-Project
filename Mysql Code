@@ -102,3 +102,5 @@ INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (101, 2530
 INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (102, 3025.50, 9830010002);
 INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (103, 1900.00, 9830010003);
 INSERT INTO analytics_table (c_id, total_bill_amount, c_ph_no) VALUES (104, 3500.00, 9830010004);
+
+
